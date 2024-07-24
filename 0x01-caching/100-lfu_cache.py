@@ -2,6 +2,7 @@
 """LFU Caching"""
 from base_caching import BaseCaching
 
+
 class LFUCache(BaseCaching):
     """LFU Caching System"""
 
@@ -10,6 +11,7 @@ class LFUCache(BaseCaching):
         super().__init__()
         self.frequency = {}
         self.order = []
+
     def put(self, key, item):
         """Add an item in the cache"""
         if key is None or item is None:
@@ -21,7 +23,8 @@ class LFUCache(BaseCaching):
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                 """ Find the key with the minimum frequency"""
                 min_freq = min(self.frequency.values())
-                min_freq_keys = [k for k, v in self.frequency.items() if v == min_freq]
+                min_freq_keys = [k for k, v in self.frequency.items()
+                                 if v == min_freq]
                 lru_key = next(k for k in self.order if k in min_freq_keys)
                 self.order.remove(lru_key)
                 del self.cache_data[lru_key]
