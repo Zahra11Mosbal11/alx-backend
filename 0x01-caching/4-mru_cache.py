@@ -5,7 +5,6 @@ from base_caching import BaseCaching
 
 class MRUCache(BaseCaching):
     """MRU Caching System"""
-    
     def __init__(self):
         """Initialize class with the parent class's init method"""
         super().__init__()
@@ -15,7 +14,7 @@ class MRUCache(BaseCaching):
         """Add an item in the cache"""
         if key is None or item is None:
             return
-        
+
         if key in self.cache_data:
             self.order.remove(key)
         elif len(self.cache_data) >= BaseCaching.MAX_ITEMS:
